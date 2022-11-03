@@ -7,16 +7,20 @@ return (
     <>
     <h2>Please select a timeframe ...</h2>
     <div className="grid">
-    {['Yesterday', 'Today', 'Tomorrow'].map((timeframes) => (
+    {['yesterday', 'today', 'tomorrow'].map(
+        (timeframes) => (
         <button 
         className="timeframe" 
         key={timeframes} 
-        onClick={() => onTimeframeSelected(timeframes)}
+        onClick={() => 
+            onTimeframeSelected(timeframes)
+        }
        > 
         {timeframes}
         </button>
-      ))}
+      )
+      )}
       </div>
       </>
-)
-}
+);
+};
