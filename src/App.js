@@ -1,33 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import { SelectSign } from './components/SelectSign';
+import { SelectTimeframe } from './components/SelectTimeframe';
 
 function App() {
-
-  const [signs, setSigns] = useState([]);
   const [selectedSign, setSelectedSign] = useState(null);
+  const [ selectedTimeframe, 
+    setSelectedTimeframe,
+  ] = useState(null);
 
-useEffect(() => {
-    fetch("http://sandipbgt.com/theastrologer/api/sunsigns/")
-      .then(response => response.json())
-      .then(setSigns);
-}, []);
+  const restart = () => {
+    setSelectedSign(null);
+    setSelectedTimeframe(null);
+  };
 
   return (
     <div className="App">
       <h1>Emmi's Horoscope Signs App</h1>
-      <h2>Please select desired sign</h2>
-      {selectedSign}
-      <div className="grid">
-      {signs.map((sign) => (
-          <button 
-          className="sign" 
-          key={sign} 
-          onClick={() => setSelectedSign(sign)}
-         > 
-          {sign}
-          </button>
-        ))}
-        </div>
+      {!selectedSign && (
+      <SelectSign onSignSelected={setSelectedSign}/>
+      )}
+      {selectedSign &&(
+      <SelectTimeframe onTimeframeSelected={setSelectedTimeframe} 
+      />
+      )}
+      <button onClick={restart}>Refresh</button>
     </div>
   );
 }
