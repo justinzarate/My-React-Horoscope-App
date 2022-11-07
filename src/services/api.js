@@ -6,7 +6,7 @@ return fetch(
 
 export const getHoroscope = (sign, timeframe) => {
   return fetch(
-    'https://sandipbgt.com/theastrologer/api/horoscope/${sign}/${timeframe}/'
+    'https://sandipbgt.com/theastrologer/api/horoscopes/${sign}/${timeframe}/'
   )
   .then((response) => response.json())
   .then(({horoscope}) => horoscope);
